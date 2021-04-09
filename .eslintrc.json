@@ -26,6 +26,7 @@
         "no-trailing-spaces": "off",
         "padded-blocks": "off",
         "dot-notation": "off",
+        "camelcase": "off",
         "space-before-function-paren": [
             "error",
             "never"
