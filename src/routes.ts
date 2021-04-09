@@ -1,4 +1,11 @@
 import express from 'express'
 
-export const routes = express.Router()
-// creating routes and excluding unnecessary folder
+import { UserController } from './app/controllers/UserController'
+
+const routes = express.Router()
+
+const userController = new UserController()
+
+routes.post('/users', userController.store)
+
+export { routes }

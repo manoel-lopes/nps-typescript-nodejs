@@ -1,16 +1,16 @@
-import  express from 'express'
-// import routes from './routes'
-// const routes = require('./routes')
+import 'reflect-metadata'
+import express from 'express'
+import { routes } from './routes'
 
-// require('./db')
+import './db'
+
 
 const app = express()
 const port = 3333
 
-// app.use(cors());
 app.use(express.json())
-// app.use(routes)
+app.use(routes)
 
 app.listen(
-    port,
-    () => console.log(`The server is running on http://localhost:${port}`))
+  port,
+  () => console.log(`The server is running on http://localhost:${port}`))
