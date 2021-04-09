@@ -1,13 +1,13 @@
 import { Request, Response } from 'express'
-import { getRepository } from 'typeorm'
+import { getCustomRepository } from 'typeorm'
 
-import { User } from '../models/User'
+import { UserRepository } from '../repositories/UserRepository'
 
 class UserController {
   async store(req: Request, resp: Response) {
     const { name = '', email = '' } = req.body
 
-    const userRepository = getRepository(User)
+    const userRepository = getCustomRepository(UserRepository)
 
     if (!name || !email) {
       return resp.status(400).json({ error: 'Blank field not allowed!' })
