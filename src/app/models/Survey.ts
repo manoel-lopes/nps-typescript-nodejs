@@ -2,15 +2,15 @@ import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } fro
 import { v4 as uuid } from 'uuid'
 
 @Entity('users')
-export class Survey {
+export class User {
     @PrimaryColumn()
     readonly id: string
 
     @Column()
-    title: string
+    name: string
     
     @Column()
-    description: string
+    email: string
     
     @CreateDateColumn()
     created_at: Date
