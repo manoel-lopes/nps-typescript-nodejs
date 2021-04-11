@@ -3,7 +3,7 @@ import { getCustomRepository } from 'typeorm'
 
 import { UserRepository } from '../repositories/UserRepository'
 
-class UserController {
+export class UserController {
   async store(req: Request, resp: Response) {
     const { name = '', email = '' } = req.body
 
@@ -39,5 +39,3 @@ class UserController {
     return resp.json(user)
   }
 }
-
-export { UserController }

@@ -2,25 +2,26 @@ import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } fro
 import { v4 as uuid } from 'uuid'
 
 @Entity('users')
-export class Survey {
-    @PrimaryColumn()
-    readonly id: string
+export class User {
 
-    @Column()
-    title: string
-    
-    @Column()
-    description: string
-    
-    @CreateDateColumn()
-    created_at: Date
+  @PrimaryColumn()
+  readonly id: string
 
-    @UpdateDateColumn()
-    update_at: Date
+  @Column()
+  name: string
 
-    constructor() {
-      if (!this.id) {
-        this.id = uuid()
-      }
+  @Column()
+  email: string
+
+  @CreateDateColumn()
+  created_at: Date
+
+  @UpdateDateColumn()
+  update_at: Date
+
+  constructor() {
+    if (!this.id) {
+      this.id = uuid()
     }
+  }
 }
