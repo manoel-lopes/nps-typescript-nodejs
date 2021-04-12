@@ -4,6 +4,17 @@ import { getCustomRepository } from 'typeorm'
 import { SurveyRepository } from '../repositories/SurveyRepository'
 
 export class SurveyController {
+
+  async index(_: Request, resp: Response) {
+    const surveyRepository = getCustomRepository(SurveyRepository)
+        
+    const users = await surveyRepository.find()
+    
+    return users.length
+      ? resp.json(users)
+      : resp.status(400).json({ error: "The user list it's empty!" })
+  }
+    
   async store(req: Request, resp: Response) {
     const { title = '', description = '' } = req.body
     
@@ -19,7 +30,7 @@ export class SurveyController {
     })
     
     await surveyRepository.save(survey)    
-    
+
     return resp.status(201).json(survey)
   }
 }
