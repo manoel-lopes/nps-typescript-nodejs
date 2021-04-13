@@ -9,12 +9,21 @@ describe('Users', () => {
     await conn.runMigrations()
   })
 
-  it('test', async() => {
+  it('Should be able to create a new user', async() => {
     const resp = await request(app).post('/users').send({
       name: 'user',
       email: 'user@email.com'
     })
 
     expect(resp.status).toBe(201)
+  })
+
+  it('Should not be able to create a new user with exists email', async() => {
+    const resp = await request(app).post('/users').send({
+      name: 'user',
+      email: 'user@email.com'
+    })
+
+    expect(resp.status).toBe(400)
   })
 })
