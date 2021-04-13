@@ -1,9 +1,11 @@
+import { createConnection } from 'typeorm'
 import 'reflect-metadata'
 import express from 'express'
 import { routes } from './routes'
 
 import './db'
 
+createConnection()
 const app = express()
 
 app.use(express.json())
