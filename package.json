@@ -10,7 +10,7 @@
     "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
     "pretest": "set NODE_ENV=test && yarn typeorm migration:run",
     "test": "set NODE_ENV=test && jest --detectOpenHandles",
-    "posttest": "rm ./src/db/db.sqlite"
+    "posttest": "rm ./src/__tests__/db_test.sqlite"
   },
   "dependencies": {
     "express": "^4.17.1",
