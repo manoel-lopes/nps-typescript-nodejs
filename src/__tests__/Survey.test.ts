@@ -33,4 +33,14 @@ describe('Surveys', () => {
 
     expect(resp.status).toBe(201)
   })
+
+  it('Should be able to get all surveys', async() => {
+    await request(app).post('/surveys').send({
+      title: 'survey',
+      description: 'survey description'
+    })
+
+    const resp = await request(app).get('/surveys')
+    expect(resp.body.length).toBe(2)
+  })
 })
