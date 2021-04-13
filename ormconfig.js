@@ -1,4 +1,4 @@
-const test = process.env.NODE_ENV?.match('test')
+const test = !!process.env.NODE_ENV
 
 module.exports = {
   type: test ? 'sqlite' : 'postgres',
