@@ -10,9 +10,7 @@ export class SurveyController {
         
     const users = await surveyRepository.find()
     
-    return users.length
-      ? resp.json(users)
-      : resp.status(400).json({ error: "The user list it's empty!" })
+    return resp.json(users)
   }
     
   async store(req: Request, resp: Response) {
