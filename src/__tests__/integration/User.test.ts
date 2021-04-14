@@ -1,7 +1,7 @@
 import request from 'supertest'
 
-import { app } from '../app'
-import createConnection from '../db'
+import { app } from '../../app'
+import createConnection from '../../db'
 
 describe('Users', () => {
   beforeAll(async() => {
