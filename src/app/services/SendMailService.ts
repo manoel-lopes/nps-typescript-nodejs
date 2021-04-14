@@ -6,7 +6,7 @@ type Mail = {
   name: string
   title: string
   description: string
-  survey_id: string
+  user_id: string
   link: string
 }
 

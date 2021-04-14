@@ -32,14 +32,14 @@ export class SendMailController {
       name: user.name,
       title: survey.title,
       description: survey.description,
-      survey_id: survey.id,
+      user_id: user.id,
       link: 'http://localhost:3333/answers'
     }
 
     const npsPath = resolve(__dirname, '..', 'views', 'emails', 'npsMail.hbs')
     
     const surveyUserAlreadyRegistered = await surveyUserRepository.findOne({
-      where: { survey_id: survey.id, value: null },
+      where: { user_id: user.id, value: null },
       relations: ['user', 'survey']
     })
 
