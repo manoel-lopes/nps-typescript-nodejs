@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js test
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add nodemailler
 
 PATH: 
   C:\Program Files\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\dotnet\;C:\Program Files (x86)\dotnet\;C:\Program Files\OpenJDK\openjdk-11.0.10_9\bin;C:\tools\php80;C:\Program Files\Go\bin;C:\ProgramData\chocolatey\lib\Elixir/bin;%LOCALAPPDATA%\Android\Sdk;%LOCALAPPDATA%\Android\Sdk\platform-tools;C:\Program Files (x86)\Yarn\bin\;C:\development\apache-maven-3.6.3\bin;C:\development\flutter\bin;C:\ProgramData\chocolatey\lib\Elixir\bin;C:\Program Files\PostgreSQL\13\bin;C:\MAMP\bin\mysql\bin;C:\Program Files\Git\bin;C:\development\MinGW\bin;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\nodejs\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Ruby27-x64\bin;C:\Users\manoel\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\manoel\AppData\Local\Programs\Python\Python39\;C:\Users\manoel\AppData\Local\Microsoft\WindowsApps;C:\Users\manoel\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\OpenJDK\openjdk-11.0.10_9\bin;C:\tools\dart-sdk\bin;C:\Users\manoel\AppData\Roaming\Pub\Cache\bin;C:\Users\manoel\AppData\Local\GitHubDesktop\bin;C:\Users\manoel\go\bin;C:\Users\manoel\AppData\Local\Android\Sdk;C:\Users\manoel\AppData\Local\Android\Sdk\platform-tools;C:\Users\manoel\AppData\Local\Yarn\bin;C:\development\apache-maven-3.6.3\bin;C:\development\flutter\bin;C:\ProgramData\chocolatey\lib\Elixir\bin;C:\Program Files\PostgreSQL\13\bin;C:\MAMP\bin\mysql\bin;C:\Program Files\Git\bin;C:\Program Files\MongoDB\Server\4.4\bin;C:\development\MinGW\bin;C:\Users\manoel\AppData\Roaming\npm;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\manoel\cmder\vendor\bin;C:\Users\manoel\cmder\bin;C:\Users\manoel\cmder
@@ -14,12 +14,17 @@ Platform:
   win32 x64
 
 Trace: 
-  SyntaxError: C:\Users\manoel\Documents\GitHub\Projects\JavaScript\Back\nps-typescript-nodejs\package.json: Unexpected token / in JSON at position 497
-      at JSON.parse (<anonymous>)
-      at C:\Program Files (x86)\Yarn\lib\cli.js:1625:59
-      at Generator.next (<anonymous>)
-      at step (C:\Program Files (x86)\Yarn\lib\cli.js:310:30)
-      at C:\Program Files (x86)\Yarn\lib\cli.js:321:13
+  Error: https://registry.yarnpkg.com/nodemailler: Not found
+      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66097:18)
+      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140749:22)
+      at Request.emit (node:events:369:20)
+      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141721:10)
+      at Request.emit (node:events:369:20)
+      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141643:12)
+      at Object.onceWrapper (node:events:475:28)
+      at IncomingMessage.emit (node:events:381:22)
+      at endReadableNT (node:internal/streams/readable:1307:12)
+      at processTicksAndRejections (node:internal/process/task_queues:81:21)
 
 npm manifest: 
   {
@@ -32,12 +37,12 @@ npm manifest:
     "scripts": {
       "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
       "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
-      "pretest": "set NODE_ENV=test && yarn typeorm migration:run",
-      "test": "set NODE_ENV=test"
-      // "posttest": "rm ./src/db/db_test.sqlite"
+      "test": "set NODE_ENV=test && jest --detectOpenHandles",
+      "posttest": "rm ./src/__tests__/db_test.sqlite"
     },
     "dependencies": {
       "express": "^4.17.1",
+      "nodemailer": "^6.5.0",
       "pg": "^8.5.1",
       "reflect-metadata": "^0.1.13",
       "typeorm": "^0.2.32",
@@ -46,6 +51,7 @@ npm manifest:
     "devDependencies": {
       "@types/express": "^4.17.11",
       "@types/jest": "^26.0.22",
+      "@types/nodemailer": "^6.4.1",
       "@types/supertest": "^2.0.11",
       "@types/uuid": "^8.3.0",
       "@typescript-eslint/eslint-plugin": "^4.19.0",
@@ -734,6 +740,13 @@ Lockfile:
     version "14.14.37"
     resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.37.tgz#a3dd8da4eb84a996c36e331df98d82abd76b516e"
     integrity sha512-XYmBiy+ohOR4Lh5jE379fV2IU+6Jn4g5qASinhitfyO71b/sCo6MKsMLF5tc7Zf2CE8hViVQyYSobJNke8OvUw==
+  
+  "@types/nodemailer@^6.4.1":
+    version "6.4.1"
+    resolved "https://registry.yarnpkg.com/@types/nodemailer/-/nodemailer-6.4.1.tgz#31f96f4410632f781d3613bd1f4293649e423f75"
+    integrity sha512-8081UY/0XTTDpuGqCnDc8IY+Q3DSg604wB3dBH0CaZlj4nZWHWuxtZ3NRZ9c9WUrz1Vfm6wioAUnqL3bsh49uQ==
+    dependencies:
+      "@types/node" "*"
   
   "@types/normalize-package-data@^2.4.0":
     version "2.4.0"
@@ -4099,6 +4112,11 @@ Lockfile:
     version "1.1.71"
     resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.71.tgz#cb1334b179896b1c89ecfdd4b725fb7bbdfc7dbb"
     integrity sha512-zR6HoT6LrLCRBwukmrVbHv0EpEQjksO6GmFcZQQuCAy139BEsoVKPYnf3jongYW83fAa1torLGYwxxky/p28sg==
+  
+  nodemailer@^6.5.0:
+    version "6.5.0"
+    resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.5.0.tgz#d12c28d8d48778918e25f1999d97910231b175d9"
+    integrity sha512-Tm4RPrrIZbnqDKAvX+/4M+zovEReiKlEXWDzG4iwtpL9X34MJY+D5LnQPH/+eghe8DLlAVshHAJZAZWBGhkguw==
   
   "nopt@2 || 3":
     version "3.0.6"

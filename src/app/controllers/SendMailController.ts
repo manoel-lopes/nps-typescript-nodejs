@@ -4,8 +4,9 @@ import { getCustomRepository } from 'typeorm'
 import { UserRepository } from '../repositories/UserRepository'
 import { SurveyRepository } from '../repositories/SurveyRepository'
 import { SurveyUserRepository } from '../repositories/SurveyUserRepository'
+import SendMailService from '../services/SendMailService'
 
-export class SendEmailController {
+export class SendMailController {
     
   async exec(req: Request, resp: Response) {
     const { email, survey_id } = req.body
@@ -32,6 +33,8 @@ export class SendEmailController {
     })
 
     await surveyUserRepository.save(surveyUser)
+
+    await SendMailService.exec(email, survey.title, survey.description)
 
     return resp.status(201).send(surveyUser)
   }
