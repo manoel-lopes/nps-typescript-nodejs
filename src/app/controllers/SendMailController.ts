@@ -42,7 +42,9 @@ export class SendMailController {
       where: [
         { user_id: user.id },
         { value: null }
-      ]
+      ],
+
+      relations: ['user', 'survey']
     })
 
     if (surveyUserAlreadyRegistered) {
