@@ -36,7 +36,7 @@ export class NPSController {
       passives,
       promoters,
       totalAnswers,
-      nps: calculation
+      nps: Number(calculation.toFixed(2))
     })
   }
 }
