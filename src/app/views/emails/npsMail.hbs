@@ -1,6 +1,6 @@
 <style>
   .container {
-    width: 800px;
+    width: 50rem;
     justify-content: center;
     align-content: center;
     align-items: center;
@@ -9,12 +9,13 @@
   }
 
   .answer {
-    width: 350px;
+    width: 21.875rem;
     display: flex;
     justify-content: space-between;
   }
 
   .value {
+    margin: 1px;
     padding: 10px;
     background: #8257e3;
     color: #fff;
@@ -28,7 +29,7 @@
     display: flex;
     margin: 0px;
     justify-content: space-between;
-    width: 350px;
+    width: 21.875rem;
   }
 </style>
 
@@ -38,9 +39,11 @@
     >! how are you?</label
   >
 
-  <h3>{{title}}</h3>
-  <br>
-  <p><strong>{{description}}</strong></p>
+  <h3>{{ title }}</h3>
+  <br />
+  <p>
+    <strong>{{ description }}</strong>
+  </p>
 
   <div class="level">
     <span>Unlikely</span>
@@ -48,22 +51,22 @@
   </div>
 
   <div class="answer">
-    <a href="" class="value">1</a>
-    <a href="" class="value">2</a>
-    <a href="" class="value">3</a>
-    <a href="" class="value">4</a>
-    <a href="" class="value">5</a>
-    <a href="" class="value">6</a>
-    <a href="" class="value">7</a>
-    <a href="" class="value">8</a>
-    <a href="" class="value">9</a>
-    <a href="" class="value">10</a>
+    <a href="{{link}}/1?u={{user_id}}" class="value">1</a>
+    <a href="{{link}}/2?u={{user_id}}" class="value">2</a>
+    <a href="{{link}}/3?u={{user_id}}" class="value">3</a>
+    <a href="{{link}}/4?u={{user_id}}" class="value">4</a>
+    <a href="{{link}}/5?u={{user_id}}" class="value">5</a>
+    <a href="{{link}}/6?u={{user_id}}" class="value">6</a>
+    <a href="{{link}}/7?u={{user_id}}" class="value">7</a>
+    <a href="{{link}}/8?u={{user_id}}" class="value">8</a>
+    <a href="{{link}}/9?u={{user_id}}" class="value">9</a>
+    <a href="{{link}}/10?u={{user_id}}" class="value">10</a>
   </div>
 
-  <br>
-  <br>
+  <br />
+  <br />
 
-  <span>
+  <span> 
     Your opinion is
     <strong> very </strong>
     important to us!
