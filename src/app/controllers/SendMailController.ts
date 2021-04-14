@@ -32,7 +32,7 @@ export class SendMailController {
       name: user.name,
       title: survey.title,
       description: survey.description,
-      user_id: user.id,
+      id: '',
       link: 'http://localhost:3333/answers'
     }
 
@@ -44,19 +44,22 @@ export class SendMailController {
     })
 
     if (surveyUserAlreadyRegistered) {
+      mailVariables.id = surveyUserAlreadyRegistered.id
       await SendMailService.exec(email, survey.title, mailVariables, npsPath)
       return resp.send(surveyUserAlreadyRegistered)
     }
-
+    
     const surveyUser = surveyUserRepository.create({
       user_id: user.id,
       survey_id
     })
+    
+    mailVariables.id = surveyUser.id
 
     await surveyUserRepository.save(surveyUser)
-
+    
     await SendMailService.exec(email, survey.title, mailVariables, npsPath)
-
+    
     return resp.status(201).send(surveyUser)
   }
 }
