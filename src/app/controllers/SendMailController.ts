@@ -5,6 +5,7 @@ import { resolve } from 'path'
 import { UserRepository } from '../repositories/UserRepository'
 import { SurveyRepository } from '../repositories/SurveyRepository'
 import { SurveyUserRepository } from '../repositories/SurveyUserRepository'
+import { AppError } from '../errors/AppError'
 import SendMailService from '../services/SendMailService'
 
 export class SendMailController {
@@ -19,13 +20,13 @@ export class SendMailController {
     const user = await userRepository.findOne({ email })
 
     if (!user) {
-      return resp.json(404).json({ error: 'User not found!' })
+      throw new AppError('User not found!', 404)
     }
 
     const survey = await surveyRepository.findOne({ id: survey_id })
 
     if (!survey) {
-      return resp.json(404).json({ error: 'Survey not found!' })
+      throw new AppError('Survey not found!', 404)
     }
 
     const mailVariables = {

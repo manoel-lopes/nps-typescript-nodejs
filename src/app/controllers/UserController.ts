@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import { getCustomRepository } from 'typeorm'
 
 import { UserRepository } from '../repositories/UserRepository'
+import { AppError } from '../errors/AppError'
 
 export class UserController {
   async store(req: Request, resp: Response) {
@@ -10,13 +11,13 @@ export class UserController {
     const userRepository = getCustomRepository(UserRepository)
 
     if (!name || !email) {
-      return resp.status(400).json({ error: 'Blank field not allowed!' })
+      throw new AppError('Blank field not allowed!')
     }
 
     const isValidEmail = email.includes('@') && email.includes('.com')
 
     if (!isValidEmail) {
-      return resp.status(400).json({ error: 'Invalid email!' })
+      throw new AppError('Invalid email!')
     }
 
     const user = userRepository.create({
@@ -31,7 +32,7 @@ export class UserController {
     })
 
     if (emailAlreadyRegistered) {
-      return resp.status(400).json({ error: 'Email already in use!' })
+      throw new AppError('Email already in use!')
     }
 
     await userRepository.save(user)

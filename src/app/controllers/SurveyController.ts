@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import { getCustomRepository } from 'typeorm'
 
 import { SurveyRepository } from '../repositories/SurveyRepository'
+import { AppError } from '../errors/AppError'
 
 export class SurveyController {
 
@@ -19,7 +20,7 @@ export class SurveyController {
     const surveyRepository = getCustomRepository(SurveyRepository)
     
     if (!title || !description) {
-      return resp.status(400).json({ error: 'Blank field not allowed!' })
+      throw new AppError('Blank field not allowed!')
     }
     
     const survey = surveyRepository.create({
