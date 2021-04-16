@@ -20,7 +20,8 @@ export class SurveyController {
     const surveyRepository = getCustomRepository(SurveyRepository)
     
     if (!title || !description) {
-      throw new AppError('Blank field not allowed!')
+      const field = !title ? 'title' : 'description'
+      throw new AppError(`Field ${field} can't be blank!`)
     }
     
     const survey = surveyRepository.create({
